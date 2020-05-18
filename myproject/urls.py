@@ -15,8 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from users import views as regView
+from pages.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/pages/', include('pages.urls')),
+    path('', include('pages.urls')),
+    path('reg/', include('users.urls')),
+    path('p/', include('profiles.urls')),
+    path('table/', include('trade.urls')),
+    # path('create/',CarCreateView.as_view()),
+    # path('reg/', regView.register, name = 'reg'),
+    
 ]

@@ -32,15 +32,21 @@ ALLOWED_HOSTS = ['192.168.1.85']
 
 INSTALLED_APPS = [
     'pages.apps.PagesConfig',
+    'profiles.apps.ProfilesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'rest_framework',
-   
+    'rest_framework.authtoken',
+    'users.apps.UsersConfig',
+    'trade.apps.TradeConfig',
+    'django_tables2',
+    # 'rest_auth.registration',
+    'bootstrap4',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -131,10 +137,10 @@ STATIC_ROOT = '/home/lunalo108/myprojectenv/myproject/myproject/static/'
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
-    ), 
+        ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ),
+        'users.backends.JWTAuthentication',
+        )
 }
-AUTH_USER_MODEL = 'pages.CustomUser'
+
+AUTH_USER_MODEL = 'users.User'
